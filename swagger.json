@@ -1,0 +1,67 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Test Enhancers",
+        "description": "A test project for Enhancers",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Cities",
+            "description": "Retrives city's data with weather and shops informations"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/cities": {
+            "get": {
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "Get a list of 5 cities",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Cities"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "City": {
+            "required": [
+                "city",
+                "weather",
+                "shops"
+            ],
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "weather": {
+                    "type": "object"
+                },
+                "shops": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
