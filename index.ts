@@ -1,8 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import weathersController from './controllers/weathers.controller';
+import citiesController from './controllers/cities.controller';
 import WeathersService, { WeathersServiceConfiguration } from './services/weathers.service';
 import { ContainerBuilder, Reference } from "node-dependency-injection";
+import { ShopsService, ShopsServiceConfiguration } from './services/shops.service';
 
 /* Setup the app */
 
@@ -25,6 +26,14 @@ container.register("configurations.weathers", WeathersServiceConfiguration)
 container.register("services.weathers", WeathersService)
     .addArgument(new Reference("configurations.weathers"));
 
+container.register("configurations.shops", ShopsServiceConfiguration)
+.addArgument("https://api.yelp.com/v3")
+.addArgument("VyVSP5eB6nhwg26DoSFILw")
+    .addArgument("3RwvcFgcsO46vM7A2ON79ontqSMy7LDcIqH47-9oRyRm7W1mXPp-MI7kkh1eKTnoG5ELWqMycHUMKHF41cVKxNPq55ZyxDQNJULUq-_sO-dtBTLTq4DAWVVJazxmYHYx");
+
+container.register("services.shops", ShopsService)
+    .addArgument(new Reference("configurations.shops"));
+
 /* Setup the controllers */
 
 app.use("/", (req, res, next) => {
@@ -33,7 +42,7 @@ app.use("/", (req, res, next) => {
     next();
 });
 
-app.use("/weathers", weathersController);
+app.use("/cities", citiesController);
 
 /* Run the app */
 
