@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import weatherController from './controllers/weathers.controller';
 
 /* Setup the app */
 
@@ -11,7 +12,11 @@ app.use(cors());
 
 const PORT = 8000;
 
-app.get('/', (req, res) => res.send('It works!'));
+/* Setup the controllers */
+
+app.use("/weathers", weatherController);
+
+app.use("/", (req, res) => { res.send("App is working!") });
 
 /* Run the app */
 
