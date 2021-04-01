@@ -5,6 +5,7 @@ import WeathersService, { WeathersServiceConfiguration } from './services/weathe
 import { ContainerBuilder, Reference } from "node-dependency-injection";
 import { ShopsService, ShopsServiceConfiguration } from './services/shops.service';
 import swaggerUi from 'swagger-ui-express';
+import * as swaggerDocument from "./swagger.json";
 
 /* Setup the app */
 
@@ -47,7 +48,7 @@ app.use("/cities", citiesController);
 
 /* Setup Swagger */
 
-const swaggerDocument = require('./swagger.json');
+//const swaggerDocument = require('./swagger.json');
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
