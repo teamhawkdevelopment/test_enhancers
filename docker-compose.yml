@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  api:
+    environment:
+      - WEATHER_API_BASE_URL=https://api.openweathermap.org/data/2.5
+      - WEATHER_API_KEY=54df5407e62e6ac395c1936a2f41e78a
+      - SHOPS_API_BASE_URL=https://api.yelp.com/v3
+      - SHOPS_API_KEY=3RwvcFgcsO46vM7A2ON79ontqSMy7LDcIqH47-9oRyRm7W1mXPp-MI7kkh1eKTnoG5ELWqMycHUMKHF41cVKxNPq55ZyxDQNJULUq-_sO-dtBTLTq4DAWVVJazxmYHYx
+      - SHOPS_CLIENT_ID=VyVSP5eB6nhwg26DoSFILw
+    build: .
+    ports:
+      - 8000:8000

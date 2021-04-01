@@ -22,16 +22,16 @@ const PORT = 8000;
 let container = new ContainerBuilder();
 
 container.register("configurations.weathers", WeathersServiceConfiguration)
-    .addArgument("54df5407e62e6ac395c1936a2f41e78a")
-    .addArgument("https://api.openweathermap.org/data/2.5");
+    .addArgument(process.env.WEATHER_API_KEY)
+    .addArgument(process.env.WEATHER_API_BASE_URL);
 
 container.register("services.weathers", WeathersService)
     .addArgument(new Reference("configurations.weathers"));
 
 container.register("configurations.shops", ShopsServiceConfiguration)
-    .addArgument("https://api.yelp.com/v3")
-    .addArgument("VyVSP5eB6nhwg26DoSFILw")
-    .addArgument("3RwvcFgcsO46vM7A2ON79ontqSMy7LDcIqH47-9oRyRm7W1mXPp-MI7kkh1eKTnoG5ELWqMycHUMKHF41cVKxNPq55ZyxDQNJULUq-_sO-dtBTLTq4DAWVVJazxmYHYx");
+    .addArgument(process.env.SHOPS_API_BASE_URL)
+    .addArgument(process.env.SHOPS_CLIENT_ID)
+    .addArgument(process.env.SHOPS_API_KEY);
 
 container.register("services.shops", ShopsService)
     .addArgument(new Reference("configurations.shops"));
@@ -47,8 +47,6 @@ app.use("/", (req, res, next) => {
 app.use("/cities", citiesController);
 
 /* Setup Swagger */
-
-//const swaggerDocument = require('./swagger.json');
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
